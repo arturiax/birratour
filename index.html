@@ -39,18 +39,19 @@ q <- ggmap(lugar) + annotate("rect", xmin = -3.025, xmax = -3.0132,
     size = 14, label = "BIRRATOUR\nPORTU") + annotation_raster(mypng, 
     xmin = -3.0215, xmax = -3.0165, ymin = 43.3165, ymax = 43.3215) + 
     coord_fixed(1.3) + theme_map()
-for (j in 1:15) print(q)
+for (j in 1:7) print(q)
 q <- ggmap(lugar) + annotate("rect", xmin = -3.025, xmax = -3.0132, 
     ymin = 43.316, ymax = 43.325, alpha = 0.6) + annotate("text", 
     x = -3.01945, y = 43.321, family = "OpenSansEmoji", color = "#EF9A00", 
     size = 60, label = "🍺") + coord_fixed(1.3) + theme_map()
-for (j in 1:8) print(q)
+for (j in 1:6) print(q)
 for (i in 1:3) {
     q <- ggmap(lugar, base_layer = ggplot(lugares[i, ], aes(lon, 
-        lat))) + geom_point(aes(color = orden), size = 7) + 
+        lat))) + geom_point(aes(color = orden), size = 6) + 
         geom_text(aes(label = orden), color = "white") + 
         geom_label(aes(label = nombre), fill = "tan1", size = 5, 
-            color = "white") + guides(fill = FALSE, color = FALSE) + 
+            color = "white", nudge_x = ifelse(i == 1, 0.003, 
+              0.002)) + guides(fill = FALSE, color = FALSE) + 
         annotation_raster(mypng, xmin = -3.0256, xmax = -3.0228, 
             ymin = 43.323, ymax = 43.325) + geom_text_repel(family = "OpenSansEmoji", 
         label = "🍺") + coord_fixed(1.3) + theme_map()
@@ -68,9 +69,9 @@ for (i in 1:3) {
     }
 }
 q <- ggmap(lugar, base_layer = ggplot(lugares[4, ], aes(lon, 
-    lat))) + geom_point(aes(color = orden), size = 7) + geom_text(aes(label = orden), 
+    lat))) + geom_point(aes(color = orden), size = 6) + geom_text(aes(label = orden), 
     color = "white") + geom_label(aes(label = nombre), fill = "tan1", 
-    size = 5, color = "white") + annotation_raster(mypng, 
+    size = 5, color = "white", nudge_x = -0.002) + annotation_raster(mypng, 
     xmin = -3.0256, xmax = -3.0228, ymin = 43.323, ymax = 43.325) + 
     geom_text_repel(family = "OpenSansEmoji", label = "🍺") + 
     guides(fill = FALSE, color = FALSE) + coord_fixed(1.3) + 
